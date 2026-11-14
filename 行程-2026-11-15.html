@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060c0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="上海 11/15">
+<title>上海一日 · 接头手册 · 2026-11-15</title>
+<style>
+  :root{
+    --bg:#060c0a; --panel:#0b1512; --panel2:#0e1c17;
+    --line:#1d3a2f; --line2:#2a5344;
+    --grn:#4dff9e; --grn-d:#26c47b;
+    --sil:#cdd9d5; --sil-d:#7d948c; --sil-dd:#5d7a71;
+    --warn:#ffd166; --warn-bg:#1d1808;
+    --red:#ff6b6b; --red-bg:#1e0c0c;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);color:var(--sil);
+    font:16px/1.62 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    padding-bottom:calc(46px + env(safe-area-inset-bottom));
+    overflow-x:hidden;
+  }
+  /* CRT 扫描线 */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.20) 0 1px,rgba(0,0,0,0) 1px 3px);
+  }
+  .wrap{max-width:600px;margin:0 auto;padding:0 14px}
+
+  /* ---------- 头部 ---------- */
+  header{
+    background:
+      linear-gradient(rgba(77,255,158,.06) 1px,transparent 1px) 0 0/100% 30px,
+      linear-gradient(90deg,rgba(77,255,158,.06) 1px,transparent 1px) 0 0/30px 100%,
+      linear-gradient(165deg,#071310 0%,#0c2119 100%);
+    border-bottom:3px solid var(--grn);
+    padding:18px 0 22px;margin-bottom:18px;
+  }
+  .hud{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:Consolas,"Courier New",monospace;font-size:12px;
+    color:var(--grn-d);letter-spacing:2px;margin-bottom:12px;
+  }
+  .hud .p2{border:2px solid var(--grn-d);padding:1px 8px;color:var(--grn);background:#081a13}
+  h1{
+    font-size:23px;margin:0 0 8px;font-weight:800;letter-spacing:2px;
+    color:#e9fff6;text-shadow:0 0 16px rgba(77,255,158,.45),2px 2px 0 #0a2018;
+  }
+  .sub{font-size:12.5px;color:var(--grn-d);margin:0;line-height:1.6}
+
+  /* ---------- 卡片 ---------- */
+  .card{
+    background:var(--panel);border:1px solid var(--line);
+    padding:15px 14px;margin:0 0 11px;
+  }
+  .card.soft{background:var(--panel2);border-color:var(--line2)}
+  .card.key{border-left:4px solid var(--red);background:#120e0e}
+  .card.warnbox{border-left:4px solid var(--warn);background:var(--warn-bg)}
+
+  .row{display:flex;align-items:baseline;gap:10px;margin-bottom:7px}
+  .time{
+    font-family:Consolas,"Courier New",monospace;
+    font-weight:700;font-size:17px;color:var(--grn);min-width:56px;
+    text-shadow:0 0 10px rgba(77,255,158,.3);
+  }
+  .card.key .time{color:var(--red);text-shadow:0 0 10px rgba(255,107,107,.3)}
+  .title{font-weight:700;font-size:16px;color:#e6f2ee;line-height:1.4}
+  .meta{
+    font-size:12px;color:var(--sil-d);margin:0 0 10px;letter-spacing:.3px;
+  }
+  p{margin:0 0 8px;font-size:14px;line-height:1.65}
+  p:last-child{margin-bottom:0}
+  .small{font-size:12.5px;color:var(--sil-d)}
+  b{font-weight:700;color:#e9fff6}
+
+  /* ---------- 按钮 ---------- */
+  .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  a.btn,button.btn{
+    -webkit-appearance:none;appearance:none;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    min-height:48px;padding:0 14px;
+    border:2px solid var(--grn);border-radius:0;
+    font-size:14.5px;font-weight:700;text-decoration:none;letter-spacing:.5px;
+    background:var(--grn);color:#04170f;flex:1 1 auto;
+  }
+  a.btn.ghost,button.btn.ghost{
+    background:transparent;color:var(--grn);border-color:var(--grn-d);flex:0 0 auto;
+  }
+  a.btn.gray,button.btn.gray{
+    background:#0c1512;color:var(--sil-d);border-color:var(--line2);flex:0 0 auto;
+  }
+  a.btn:active,button.btn:active{transform:translateY(1px);filter:brightness(1.15)}
+  a.btn.sm,button.btn.sm{min-height:44px;font-size:13px;padding:0 11px;flex:0 0 auto}
+  .btn-note{font-size:11.5px;color:var(--sil-dd);margin-top:9px;line-height:1.6}
+  p.street{
+    font-size:12px;font-weight:700;color:var(--grn-d);margin:0 0 8px;
+    letter-spacing:2px;font-family:Consolas,monospace;
+  }
+
+  /* ---------- 表格 ---------- */
+  table.cmp{width:100%;border-collapse:collapse;font-size:12.5px}
+  table.cmp th,table.cmp td{
+    padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;
+  }
+  table.cmp th{color:var(--grn-d);font-weight:700;font-size:11.5px;letter-spacing:1px}
+  table.cmp td:first-child{
+    color:var(--grn-d);white-space:nowrap;
+    font-family:Consolas,monospace;font-size:12.5px;
+  }
+  table.cmp td{color:var(--sil)}
+
+  /* ---------- 地铁站 ---------- */
+  .stations{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+  .st{
+    font-size:12px;padding:5px 9px;background:#0c1512;
+    border:1px solid var(--line2);color:var(--sil-d);white-space:nowrap;
+  }
+  .st.end{background:#0a2419;border-color:var(--grn-d);color:var(--grn);font-weight:700}
+
+  /* ---------- 午饭二选一 ---------- */
+  .picker{display:grid;gap:9px;margin:12px 0}
+  .pick{
+    -webkit-appearance:none;appearance:none;width:100%;text-align:left;cursor:pointer;
+    display:flex;align-items:center;gap:11px;min-height:60px;padding:12px 13px;
+    background:#0c1512;border:2px solid var(--line2);border-radius:0;
+    font:inherit;color:var(--sil);
+  }
+  .pick .dot{
+    width:18px;height:18px;border:2px solid var(--line2);flex:0 0 auto;position:relative;background:transparent;
+  }
+  .pick[aria-pressed="true"]{border-color:var(--grn);background:#0a2419}
+  .pick[aria-pressed="true"] .dot{border-color:var(--grn);background:var(--grn)}
+  .pick .nm{font-weight:700;font-size:15px;display:block;color:#e9fff6}
+  .pick .ds{font-size:12px;color:var(--sil-d);display:block;margin-top:3px}
+
+  #lunchPanel{border-top:1px dashed var(--line2);padding-top:12px;margin-top:4px}
+  #lunchPanel .hint{
+    font-size:12.5px;color:var(--grn-d);font-family:Consolas,monospace;letter-spacing:1px;
+  }
+
+  /* ---------- 输入框 ---------- */
+  .field{display:flex;gap:8px;margin:10px 0 0}
+  input[type=text]{
+    flex:1;min-height:48px;padding:0 12px;font:inherit;font-size:15px;
+    border:2px solid var(--line2);border-radius:0;background:#0a1210;color:var(--sil);
+    min-width:0;
+  }
+  input[type=text]::placeholder{color:var(--sil-dd)}
+  input[type=text]:focus{outline:none;border-color:var(--grn);background:#0c1a15}
+
+  /* ---------- 杂项 ---------- */
+  h2{
+    font-size:12.5px;letter-spacing:3px;color:var(--grn);font-weight:700;
+    margin:24px 2px 10px;font-family:Consolas,"Courier New",monospace;
+    padding-bottom:7px;border-bottom:1px dashed var(--line2);
+  }
+  h2::before{content:"> ";color:var(--grn-d)}
+  ul.todo{margin:0;padding-left:19px}
+  ul.todo li{margin:0 0 8px;font-size:13.5px;line-height:1.6}
+  ul.todo li::marker{color:var(--grn-d)}
+
+  .toast{
+    position:fixed;left:50%;bottom:calc(26px + env(safe-area-inset-bottom));
+    transform:translate(-50%,14px);
+    background:var(--grn);color:#04170f;font-size:13.5px;font-weight:700;
+    padding:11px 18px;border:2px solid #0a2b1d;
+    opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:99;
+  }
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+  .manual{
+    width:100%;margin-top:10px;padding:11px 12px;border:2px solid var(--line2);
+    border-radius:0;font:inherit;font-size:13.5px;line-height:1.6;
+    color:var(--sil);background:#0a1210;resize:none;
+  }
+  footer{font-size:11.5px;color:var(--sil-dd);line-height:1.8;padding:20px 2px 0}
+  footer b{color:var(--sil-d)}
+  .pill{
+    display:inline-block;font-size:11px;padding:2px 8px;margin-right:6px;
+    border:1px solid var(--line2);color:var(--sil-d);font-family:Consolas,monospace;
+  }
+  .pill.ok{border-color:var(--grn-d);color:var(--grn);background:#0a2419}
+  .pill.no{border-color:var(--red);color:var(--red);background:var(--red-bg)}
+
+  /* ---------- 打印 / 导出 PDF（浅色版，保证任何阅读器都看得清） ---------- */
+  @page{size:A4;margin:8mm}
+  @media print{
+    html,body{background:#fff !important;color:#111 !important}
+    body::after{display:none}
+    header{background:#eef2f7 !important;color:#0b1f3a !important;border-bottom:3px solid #0a7f4f !important}
+    header h1{color:#0b1f3a !important;text-shadow:none}
+    header .sub{color:#2c5a7d !important}
+    .hud{color:#0a7f4f !important}
+    .hud .p2{color:#0a7f4f !important;border-color:#0a7f4f !important;background:#fff !important}
+    .card{background:#fff !important;border:1px solid #ccd !important}
+    .card.soft{background:#f5f7f9 !important}
+    .card.warnbox{background:#fffbf0 !important;border-left:4px solid #d99a1a !important}
+    .card.key{background:#fff5f5 !important;border-left:4px solid #d64545 !important}
+    .time{color:#0a7f4f !important;text-shadow:none}
+    .card.key .time{color:#c22 !important}
+    .title{color:#111 !important}
+    p,.m,.small,.btn-note,.meta{color:#333 !important}
+    h2{color:#0a7f4f !important;border-bottom:1px dashed #bbb !important}
+    .st{background:#f0f2f4 !important;color:#333 !important;border:1px solid #ccd !important}
+    .st.end{background:#e6f7ef !important;color:#0a7f4f !important;border-color:#0a7f4f !important}
+    table.cmp th{color:#0a7f4f !important}
+    table.cmp th,table.cmp td{border-bottom:1px solid #ddd !important;color:#222 !important}
+    table.cmp td:first-child{color:#0a7f4f !important}
+    .pill{border:1px solid #bbb !important;color:#444 !important}
+    .pill.ok{background:#e6f7ef !important;color:#0a7f4f !important;border-color:#0a7f4f !important}
+    .pill.no{background:#fff5f5 !important;color:#c22 !important;border-color:#c22 !important}
+    a.btn{background:#e6f7ef !important;color:#0a5f3a !important;border:2px solid #0a7f4f !important}
+    a.btn.ghost,a.btn.gray{background:#fff !important;color:#0a5f3a !important}
+    .pick{background:#fff !important;border:2px solid #bbb !important;color:#111 !important}
+    .pick .nm{color:#111 !important}
+    .pick .ds{color:#555 !important}
+    .pick .dot{border-color:#999 !important}
+    input[type=text]{background:#fff !important;color:#111 !important;border:2px solid #bbb !important}
+    footer{color:#666 !important}
+    header,.card,table,h2,.picker{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="hud">
+      <span>2026.11.15　SUN</span>
+      <span class="p2">OPS</span>
+    </div>
+    <h1>上海一日 · 接头手册</h1>
+    <p class="sub">虹桥碰头 → 巨富长 → 跳舞 → 外卖 → 20:07 发车</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="card soft">
+    <p><b>全天排完了。</b>13:10 → 15:15 巨富长逛街（2 小时），16:00 → 17:00 跳 Hip-hop，17:35 点外卖，18:00 吃饭，19:30 出门赶 20:07 的车。</p>
+  </div>
+
+  <!-- 10:50 -->
+  <div class="card">
+    <div class="row"><span class="time">10:50</span><span class="title">你先到，踩个点</span></div>
+    <p class="meta">提前 10 分钟 · 你一个人</p>
+    <p>先认清「往地铁 2 号线」的指示牌方向，找好等的位置。这样他一下车你就能直接指路。</p>
+  </div>
+
+  <!-- 11:00 碰头 -->
+  <div class="card key" id="meet">
+    <div class="row"><span class="time">11:00</span><span class="title">碰头 · 虹桥火车站</span></div>
+    <p class="meta">关键卡 · 约在这里不容易走散</p>
+    <p>下高铁后，按站内指示牌<b>往「地铁 2 号线」方向走</b>，在<b>还没进闸机的那片广场</b>集合。</p>
+    <p>别约在出站口 —— 虹桥站出站口有好几处，人多信号差，最容易错开。闸机前的广场视野好、人少一半。</p>
+    <p class="small">你先到就在广场靠中间的位置站着等，别自己先走进闸机。万一错开：站内服务台碰头，或者直接打电话。</p>
+    <div class="btns">
+      <a class="btn" id="meetAmap" target="_blank" rel="noopener">搜「上海虹桥站」</a>
+      <a class="btn ghost" id="meetApple" target="_blank" rel="noopener">苹果地图</a>
+    </div>
+    <div class="btns">
+      <button class="btn gray" id="copyMeet">复制碰头话术</button>
+    </div>
+    <textarea id="meetManual" class="manual" readonly rows="4" style="display:none"></textarea>
+  </div>
+
+  <!-- 11:05 酒店 -->
+  <div class="card">
+    <div class="row"><span class="time">11:05</span><span class="title">去朋友酒店放行李</span></div>
+    <p class="meta">酒店就在虹桥站附近 · 带箱子</p>
+    <p>你陪他一起过去，前台登记一下先<b>寄存行李</b>。</p>
+    <p class="small">多数酒店 14:00 才能入住，11 点只能寄存 —— 让他今晚或明天早上先打个电话问一句，免得白跑。</p>
+    <div class="field">
+      <input type="text" id="hotelInput" placeholder="填酒店名字（填完按钮就会出现）" autocomplete="off">
+    </div>
+    <div class="btns" id="hotelBtns" style="display:none">
+      <a class="btn" id="hotelAmap" target="_blank" rel="noopener">搜酒店</a>
+      <a class="btn ghost" id="hotelApple" target="_blank" rel="noopener">苹果地图</a>
+    </div>
+    <p class="btn-note" id="hotelNote">还没填酒店名。填一下，按钮就会出现。</p>
+    <p class="small" style="margin-top:10px">若酒店要打车、或前台排队久：后面几个时间整体往后挪，不必卡死 11:35。要是 12:30 还没回到地铁，就在酒店周边先吃。</p>
+  </div>
+
+  <!-- 11:35 地铁 -->
+  <div class="card">
+    <div class="row"><span class="time">11:35</span><span class="title">回到地铁 2 号线</span></div>
+    <p class="meta">往浦东国际机场方向 · 5 站 · 约 13 分钟</p>
+    <div class="stations">
+      <span class="st">虹桥火车站</span>
+      <span class="st">虹桥2号航站楼</span>
+      <span class="st">淞虹路</span>
+      <span class="st">北新泾</span>
+      <span class="st">威宁路</span>
+      <span class="st end">娄山关路</span>
+    </div>
+    <p class="small" style="margin-top:10px">2 号线在虹桥站有两个方向，认准<b>「浦东国际机场」</b>那一侧，别坐反。站内线路图以现场为准。</p>
+  </div>
+
+  <!-- 11:55 出站 -->
+  <div class="card">
+    <div class="row"><span class="time">11:55</span><span class="title">娄山关路站 · 出站找店</span></div>
+    <p class="meta">站口步行范围内</p>
+    <p>出站后按下面的按钮搜店名，看到同名的那家点进去，再点「路线」就到。</p>
+  </div>
+
+  <!-- 12:05 午饭 -->
+  <div class="card" id="lunch">
+    <div class="row"><span class="time">12:05</span><span class="title">午饭 · 二选一</span></div>
+    <p class="meta">娄山关路 · 现场点哪家都行</p>
+    <p>两家都放在这儿，选哪家下面的导航就跟着换。</p>
+
+    <div class="picker" role="group" aria-label="午饭二选一">
+      <button class="pick" type="button" data-key="a" aria-pressed="false">
+        <span class="dot" aria-hidden="true"></span>
+        <span><span class="nm">A · Lucas 台式小馆</span></span>
+      </button>
+      <button class="pick" type="button" data-key="b" aria-pressed="false">
+        <span class="dot" aria-hidden="true"></span>
+        <span><span class="nm">B · 筑紫九州和食</span><span class="ds">日式料理</span></span>
+      </button>
+    </div>
+
+    <div id="lunchPanel">
+      <p class="hint" id="lunchHint">先选一家。</p>
+      <div class="btns" id="lunchBtns" style="display:none">
+        <a class="btn" id="lunchAmap" target="_blank" rel="noopener">搜这家店</a>
+        <a class="btn ghost" id="lunchApple" target="_blank" rel="noopener">苹果地图</a>
+      </div>
+    </div>
+
+    <p class="btn-note">两家店的楼层和门牌我没法联网核实，所以这里给的是「搜店名」——高德会把同名店列出来，认准娄山关路附近那家。<br>11:55 出站、12:05 前到店，赶在 12 点后的等位高峰前进场；真排队太久，就在周边商场里另找一家。</p>
+  </div>
+
+  <!-- ============ 下午 ============ -->
+  <h2>下午 · 巨富长 City Walk（2 小时）</h2>
+
+  <div class="card soft">
+    <p><b>13:10 → 15:15。</b>巨鹿路 → 富民路 → 长乐路，从常熟路那头进、陕西南路站出（这两个站来自你给的第 3 篇笔记）。</p>
+    <p class="small">★ 建议做　　○ 赶时间就跳　　安福路已砍，原因在下面</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="time">13:10</span><span class="title">打车去巨鹿路西头</span></div>
+    <p class="meta">约 4km · 15–20 分 · 预估 15–20 元</p>
+    <p>从娄山关路直接上车，停在常熟路那头。这一带坐地铁要换两三趟，打车省 20 分钟。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="time">13:30</span><span class="title">★ 巨鹿路 · 往东</span></div>
+    <p class="meta">约 700m · 60 分（含坐下喝一杯）</p>
+    <p>三篇笔记里提到最多的就是这一带。铺子密、门头好看；想坐咖啡就在这段坐，越往后越挤。</p>
+  </div>
+
+  <!-- 人生四格 -->
+  <div class="card" id="photo">
+    <div class="row"><span class="time">~14:00</span><span class="title">人生四格 · 在路上现搜</span></div>
+    <p class="meta">10–15 分（含等位）· 插在巨鹿路这一段</p>
+    <p><b>这条街上到底有没有店，我没核到 —— 别当“肯定有”来安排。</b>Photoism 中国官网只有加盟页、无门店清单（/store、/shop 都 404）；photogrey.cn 域名解析不到；百度百科 403；四个关键词搜出来全是无关结果。</p>
+    <div class="btns">
+      <a class="btn" data-kw="大头贴">搜「大头贴」</a>
+      <a class="btn ghost" data-kw="人生四格">搜「人生四格」</a>
+    </div>
+    <div class="btns">
+      <a class="btn ghost" data-kw="自助照相馆">搜「自助照相馆」</a>
+      <a class="btn ghost" data-kw="PhotoGrey">搜「PhotoGrey」</a>
+    </div>
+    <div class="btns">
+      <a class="btn ghost" data-kw="巨鹿路 大头贴">巨鹿路</a>
+      <a class="btn ghost" data-kw="富民路 大头贴">富民路</a>
+      <a class="btn ghost" data-kw="Photoism">Photoism</a>
+    </div>
+    <p class="btn-note"><b>优先用「大头贴」</b>——国内很多店不挂韩国品牌名，就叫“自助大头贴”。<br>挑店看三条：① 步行 500 米内　② 有位置补妆/看样片　③ 进店先问四格还是六格、能不能重拍。<br><b>大众点评最靠谱</b>：App 里搜「大头贴」→ 按距离排序 → 筛 500 米内（电脑上抓不到，只能你手机搜）。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="time">14:30</span><span class="title">★ 富民路 · 往北</span></div>
+    <p class="meta">约 300m · 25 分</p>
+    <p>街短，但浓度高：交叉比对上的三家，两家都在这一带（又喜商店、BISTRO11）。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="time">14:55</span><span class="title">★ 长乐路 · 往东</span></div>
+    <p class="meta">约 600m · 20 分</p>
+    <p>走到头就是陕西南路站。</p>
+  </div>
+
+  <div class="card warnbox">
+    <div class="row"><span class="time">15:15</span><span class="title">陕西南路站上车</span></div>
+    <p>走 3 口进站（第 3 篇笔记写的），<b>10 号线往西直达</b> 交通大学 / 虹桥路 / 伊犁路 —— 和教室那条线对得上。</p>
+    <p class="small">16:00 上课是硬点。这段总共 1 小时 45 分，超时就从这儿扣，别再往东走。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="title">交叉比对：两篇都提到的店</span></div>
+    <p class="meta">只算第 1、2 篇；第 3 篇只有路线和地铁站，没有店名</p>
+    <ul class="todo">
+      <li><b>又喜商店</b> —— 第 1 篇（街铺）、第 2 篇（富民路）</li>
+      <li><b>BISTRO11</b> —— 第 1 篇（吃的）、第 2 篇（富民路）</li>
+      <li><b>MeloMela</b> —— 第 1 篇写 melomela，第 2 篇写 MeloMela</li>
+    </ul>
+    <p class="btn-note">这三家是两篇笔记互相印证的，优先找它们。<b>但还开不开着我核不到</b> —— 笔记是别人过去的记录，不是实时数据。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="title">只在一篇里出现的（参考）</span></div>
+    <p><b>第 1 篇 · 街铺</b>：naxiaoxiao、fruityshop（唱片店）、badmarket、moonmoonhome、Hitable、polette、微笑商店</p>
+    <p><b>第 1 篇 · 吃的</b>：Plusone、幸福车站</p>
+    <p><b>第 2 篇</b>：Ottimo（富民路）、Alicia、Hare Artis 小兔窑作、窄门 LAPORTE（长乐路 / 华亭路）、GOODBAI、PART SPACESH、Hello Kitty 快闪（延庆路）</p>
+    <p class="small">单篇出现的可信度低一档，但也可能只是另一篇没写。先找交叉比对的三家，再看这些。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="title">为什么砍掉安福路</span></div>
+    <p>算下来<b>来不及</b>：安福路要 45 分钟，剩下到巨鹿路只剩 40 分钟，<b>咖啡一刻都坐不下来</b>，最后到陕西南路站是 15:20，已经晚点。</p>
+    <p class="small">两条街内容重复，巨富长的店更密，所以留它。安福路哪天专门去一次更值。</p>
+  </div>
+
+  <!-- 搜店矩阵 -->
+  <h2>找店：按街 × 品类</h2>
+  <div class="card">
+    <p class="street">巨鹿路</p>
+    <div class="btns">
+      <a class="btn sm" data-kw="巨鹿路 咖啡">咖啡</a>
+      <a class="btn sm ghost" data-kw="巨鹿路 买手店">小店</a>
+      <a class="btn sm ghost" data-kw="巨鹿路 冰淇淋">冰淇淋</a>
+    </div>
+    <p class="street" style="margin-top:16px">富民路</p>
+    <div class="btns">
+      <a class="btn sm" data-kw="富民路 咖啡">咖啡</a>
+      <a class="btn sm ghost" data-kw="富民路 小店">小店</a>
+      <a class="btn sm ghost" data-kw="富民路 吃饭">吃饭</a>
+    </div>
+    <p class="street" style="margin-top:16px">长乐路</p>
+    <div class="btns">
+      <a class="btn sm" data-kw="长乐路 小店">小店</a>
+      <a class="btn sm ghost" data-kw="长乐路 咖啡">咖啡</a>
+    </div>
+    <p class="btn-note">点一下就是高德关键词搜索，能看到营业中、评分、排队情况。搜不到就放宽成只搜品类，再看距离筛。</p>
+  </div>
+
+  <!-- ============ 晚上：跳舞 + 回酒店 ============ -->
+  <h2>晚上 · 跳舞（Hip-hop）</h2>
+
+  <div class="card warnbox">
+    <div class="row"><span class="title">车次 20:07，19:30 必须出门</span></div>
+    <p>酒店在站边：19:30 出门 → 19:45 到虹桥站 → 20:07 发车，留 20 分钟余量，够用。</p>
+    <p class="small">所以晚饭只排 1 小时（18:00–19:00），19:00–19:30 留给收东西。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="title">地点只有一条规矩</span></div>
+    <p>教室得在<b>回虹桥的路上</b>：10 号线的 交通大学 / 虹桥路 / 伊犁路 一带，或者 2 号线的娄山关路（回虹桥同样直达）。</p>
+    <p>反方向（静安寺、人民广场、往南的徐家汇）来回要多 40 分钟，吃饭和休息全被吃掉 —— 别往那边找。</p>
+    <div class="btns">
+      <a class="btn sm" data-kw="交通大学 hiphop 舞蹈教室">交通大学</a>
+      <a class="btn sm ghost" data-kw="虹桥路 街舞工作室">虹桥路</a>
+      <a class="btn sm ghost" data-kw="伊犁路 舞蹈工作室">伊犁路</a>
+      <a class="btn sm ghost" data-kw="娄山关路 街舞">娄山关路</a>
+    </div>
+    <p class="btn-note">这几站能搜到多少工作室我没核过；Hip-hop 教室常常不叫“舞蹈教室”，而是挂「街舞工作室」，两个词都试试。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="title">时间表（按 20:07 倒排）</span></div>
+    <table class="cmp">
+      <tr><td>15:15</td><td>散步收尾，往教室走</td></tr>
+      <tr><td>15:45</td><td>到教室，换鞋准备</td></tr>
+      <tr><td>16:00</td><td>开跳 · Hip-hop，1 小时</td></tr>
+      <tr><td>17:00</td><td>结课，往回走</td></tr>
+      <tr><td>17:20</td><td>到酒店，办入住</td></tr>
+      <tr><td>17:35</td><td>点外卖（选 25 分钟内送到的）</td></tr>
+      <tr><td>18:00</td><td>开吃</td></tr>
+      <tr><td>19:00</td><td>吃完，收东西</td></tr>
+      <tr><td>19:30</td><td>出酒店</td></tr>
+      <tr><td>19:45</td><td>到虹桥站</td></tr>
+      <tr><td>20:07</td><td>发车</td></tr>
+    </table>
+    <p class="btn-note">行李那天早上就寄存了，入住只是办手续。20 分钟进站余量别省。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="title">晚饭：虹桥站附近能点什么（不辣）</span></div>
+    <p class="meta">17:35 下单，18:00 前必须到</p>
+    <p>点外卖直接用美团/饿了么搜品类最快；下面的按钮是高德按距离查店，用来确认近不近。</p>
+    <div class="btns">
+      <a class="btn sm" data-kw="虹桥站 粥店">粥</a>
+      <a class="btn sm ghost" data-kw="虹桥站 面馆">面</a>
+      <a class="btn sm ghost" data-kw="虹桥站 馄饨">馄饨/生煎</a>
+    </div>
+    <div class="btns">
+      <a class="btn sm ghost" data-kw="虹桥站 本帮菜">本帮菜</a>
+      <a class="btn sm ghost" data-kw="虹桥站 日料">日料</a>
+      <a class="btn sm ghost" data-kw="虹桥站 粤菜">粤菜</a>
+    </div>
+    <p class="street" style="margin-top:16px">这些别点（辣）</p>
+    <p class="small">川菜、湘菜、火锅、麻辣烫、冒菜、小龙虾、烧烤（多半撒辣椒面）。</p>
+    <p class="btn-note">备注写「不要辣、不放辣椒」；拿不准就打电话问一句。<b>18:00 前送到</b>是硬条件 —— 19:30 要出门，晚到就得边吃边赶。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="title">跳 90 分钟这次不行</span></div>
+    <p>16:00–17:30 会把吃饭压到 30 分钟，到站只剩 17 分钟余量，不值得冒这个险。<b>1 小时够用。</b></p>
+    <p class="small">真想跳久点，就把散步砍到 14:45、15:15 上课 —— 但咖啡和拍照要放弃一样。</p>
+  </div>
+
+  <div class="card">
+    <table class="cmp">
+      <tr><th></th><th>A 租教室</th><th>B 体验课</th></tr>
+      <tr><td>谁教</td><td>自己放歌</td><td>老师带</td></tr>
+      <tr><td>花费</td><td>80–200 元/小时<br>两人 AA</td><td>30–80 元/人<br>团购更便宜</td></tr>
+      <tr><td>这次胜在</td><td><b>时段随便挑</b></td><td>有人纠动作</td></tr>
+      <tr><td>这次风险</td><td>音响镜子不好用</td><td><b>16:00 多半没课</b></td></tr>
+    </table>
+    <p class="btn-note">Hip-hop 的体验课基本压在晚上 19:00 之后，16:00 这个点<b>方案 A 更现实</b>。价钱是行情估值，未核实。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="title">方案 A · 租一间教室自己跳</span></div>
+    <p class="meta">两个人，16:00–17:00，一小时</p>
+    <p>Hip-hop 教室常挂「街舞工作室」「舞蹈排练室」的牌子，两个词都搜。搜到先打电话问六条。</p>
+    <div class="btns">
+      <a class="btn" data-kw="街舞工作室 出租">搜「街舞工作室 出租」</a>
+      <a class="btn ghost" data-kw="排练室 租">搜「排练室 租」</a>
+    </div>
+    <p class="street" style="margin-top:16px">订前必问 6 条</p>
+    <ul class="todo">
+      <li><b>16:00–17:00 能不能给</b>，按小时还是按半小时计</li>
+      <li><b>音响能不能连手机</b> —— 蓝牙还是音频线（有人到了才发现只能放 CD）</li>
+      <li><b>有没有整面镜子</b>，空调冷不冷</li>
+      <li><b>押金</b>多少、怎么退</li>
+      <li>能不能换衣服、存包，洗手间在哪</li>
+      <li>两个人用<b>会不会加钱</b>（有的按人头报）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="title">方案 B · 报一节 Hip-hop 体验课</span></div>
+    <p class="meta">有人带，但得跟着课表走</p>
+    <p>先问一句：「<b>周日 16:00 有没有 Hip-hop 零基础体验课</b>」。有就报，没有就走 A。</p>
+    <div class="btns">
+      <a class="btn" data-kw="hiphop 体验课">搜「hiphop 体验课」</a>
+      <a class="btn ghost" data-kw="街舞 体验课">街舞</a>
+      <a class="btn ghost" data-kw="爵士 体验课">爵士</a>
+    </div>
+    <p class="street" style="margin-top:16px">挑课标准</p>
+    <ul class="todo">
+      <li>人数上限 <b>≤ 12 人</b>（二十多人的大课基本学不到东西）</li>
+      <li>单节 <b>≥ 60 分钟</b>，且 17:00 前必须结束</li>
+      <li>明确写「零基础 / 入门」，不是进阶课</li>
+      <li>问：要不要自备鞋、<b>会不会拍视频发平台</b>（不想入镜先讲）</li>
+    </ul>
+  </div>
+
+  <div class="card warnbox">
+    <div class="row"><span class="title">明天再找，但先确认两件事</span></div>
+    <p>① 教室<b>16:00–17:00</b> 有没有空 —— Hip-hop 按小时出租的教室不多，问两三间再定。<br>② <b>音响能不能连手机</b>。</p>
+    <p class="small">其余到现场都能解决：镜子、空调、押金、换衣服。</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="title">现在定下来的</span></div>
+    <p>✓ 车次 <b>20:07</b>，19:30 出门<br>✓ 舞种 <b>Hip-hop</b>，16:00–17:00 一小时<br>✓ 晚饭 1 小时，不辣<br>○ 教室／体验课明天找<br>○ 预算上限还没说（影响挑教室）</p>
+  </div>
+
+  <!-- checklist -->
+  <h2>明天出门前 3 件事</h2>
+  <div class="card">
+    <ul class="todo">
+      <li>看一眼天气（下雨我把下午的户外段换成室内方案）</li>
+      <li>让朋友打电话问酒店：11 点能不能先寄存行李</li>
+      <li>确认高铁正点；晚点超过 20 分钟就把午饭往后推，先在高德看排队</li>
+    </ul>
+  </div>
+
+  <!-- help -->
+  <h2>点不动按钮的时候</h2>
+  <div class="card">
+    <p><b>别在微信里点这个页面。</b>高德明确写了：微信、QQ 的内置浏览器调不起地图 App。请用手机自带浏览器打开（Safari / Chrome / 系统浏览器），可以先「添加到主屏幕」，明天点开就像一个小 App。</p>
+    <p class="small">为什么导航要分两步：网页里拿不到精确坐标（我去查真实坐标被高德的反爬拦了），与其给你一个偏几百米的假点，不如让你搜一下店名再点路线 —— 多一下点击，不出错。</p>
+    <p class="small">如果你点了「搜这家店」结果里找不到：把店名复制出来，直接在 App 里搜；或者问店员这一带怎么走。</p>
+  </div>
+
+  <footer>
+    <p style="margin-bottom:8px">
+      <span class="pill ok">已核实</span>高德链接的调用方式（官方 URI 文档 2025-03-03 版）
+    </p>
+    <p style="margin-bottom:8px">
+      <span class="pill no">未核实</span>两家餐厅的地址、营业时间、人均；「日式料理」这类按店名推断的菜系；酒店能否提前寄存；明日天气；巨富长一带有没有「人生四格」自助摄影店（Photoism 官网无门店清单，自查未发现上海门店）；小红书笔记里那些店是否还在营业；各段步行距离与用时。这些都是按经验估的或转引，现场以实际为准。
+    </p>
+    <p>页面生成于 2026-11-14 夜 · 含全天 · 按车次 20:07 倒排</p>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast">已复制</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var KEY = "sh-2026-11-15-v1";
+
+  var LUNCH = {
+    a: { name: "Lucas 台式小馆", kw: "Lucas台式小馆" },
+    b: { name: "筑紫九州和食", kw: "筑紫九州和食" }
+  };
+
+  var MEET_KW = "上海虹桥站";
+  var CITY = "310000";
+
+  function amapSearch(kw) {
+    return "https://uri.amap.com/search?keyword=" + encodeURIComponent(kw) +
+           "&city=" + CITY + "&view=map&src=thincoder&callnative=1";
+  }
+  function appleSearch(kw) {
+    return "https://maps.apple.com/?q=" + encodeURIComponent(kw) +
+           "&near=" + encodeURIComponent("上海");
+  }
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; }
+  }
+  function save(state) {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  var state = load();
+
+  function toast(msg) {
+    var el = document.getElementById("toast");
+    el.textContent = msg;
+    el.classList.add("on");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { el.classList.remove("on"); }, 1500);
+  }
+
+  /* ---- 碰头点固定链接 ---- */
+  document.getElementById("meetAmap").href = amapSearch(MEET_KW);
+  document.getElementById("meetApple").href = appleSearch(MEET_KW);
+
+  /* ---- 酒店：输入即生成链接 ---- */
+  var hotelInput = document.getElementById("hotelInput");
+  var hotelBtns = document.getElementById("hotelBtns");
+  var hotelAmap = document.getElementById("hotelAmap");
+  var hotelApple = document.getElementById("hotelApple");
+  var hotelNote = document.getElementById("hotelNote");
+
+  function renderHotel() {
+    var name = String(state.hotel || "").trim();
+    if (!name) {
+      hotelBtns.style.display = "none";
+      hotelAmap.removeAttribute("href");
+      hotelApple.removeAttribute("href");
+      hotelNote.textContent = "还没填酒店名。填一下，按钮就会出现。";
+      return;
+    }
+    hotelBtns.style.display = "flex";
+    hotelAmap.href = amapSearch(name);
+    hotelApple.href = appleSearch(name);
+    hotelNote.textContent = "已按「" + name + "」生成搜索链接：搜到后点进去，再点「路线」。";
+  }
+
+  hotelInput.value = state.hotel || "";
+  hotelInput.addEventListener("input", function () {
+    state.hotel = hotelInput.value;
+    save(state);
+    renderHotel();
+  });
+  renderHotel();
+
+  /* ---- 午饭二选一 ---- */
+  var picks = Array.prototype.slice.call(document.querySelectorAll(".pick"));
+  var lunchHint = document.getElementById("lunchHint");
+  var lunchBtns = document.getElementById("lunchBtns");
+  var lunchAmap = document.getElementById("lunchAmap");
+  var lunchApple = document.getElementById("lunchApple");
+
+  function renderLunch() {
+    picks.forEach(function (b) {
+      b.setAttribute("aria-pressed", b.dataset.key === state.lunch ? "true" : "false");
+    });
+    var chosen = LUNCH[state.lunch];
+    if (!chosen) {
+      lunchHint.textContent = "先选一家。";
+      lunchBtns.style.display = "none";
+      lunchAmap.removeAttribute("href");
+      lunchApple.removeAttribute("href");
+      return;
+    }
+    lunchHint.textContent = "已选：" + chosen.name;
+    lunchBtns.style.display = "flex";
+    lunchAmap.href = amapSearch(chosen.kw);
+    lunchApple.href = appleSearch(chosen.kw);
+  }
+
+  picks.forEach(function (b) {
+    b.addEventListener("click", function () {
+      state.lunch = (state.lunch === b.dataset.key) ? "" : b.dataset.key;
+      save(state);
+      renderLunch();
+    });
+  });
+  renderLunch();
+
+  /* ---- 按街 × 品类的搜索按钮（含人生四格） ---- */
+  Array.prototype.forEach.call(document.querySelectorAll("a[data-kw]"), function (a) {
+    a.href = amapSearch(a.dataset.kw);
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+
+  /* ---- 复制碰头话术 ---- */
+  var SCRIPT = "我11:00到虹桥站。你下高铁后按站内指示牌往「地铁2号线」方向走，别出站，" +
+               "在进闸机前的那片广场等我（不是出站口）。我10:50就到，站中间等你。";
+
+  var meetManual = document.getElementById("meetManual");
+
+  function showManual() {
+    meetManual.value = SCRIPT;
+    meetManual.style.display = "block";
+    meetManual.focus();
+    meetManual.select();
+    toast("复制没成功，长按下面文字手动复制");
+  }
+
+  function legacyCopy() {
+    var ta = document.createElement("textarea");
+    ta.value = SCRIPT;
+    ta.setAttribute("readonly", "");
+    ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    if (ok) { toast("已复制，去微信粘贴"); } else { showManual(); }
+  }
+
+  document.getElementById("copyMeet").addEventListener("click", function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(SCRIPT).then(function () {
+        toast("已复制，去微信粘贴");
+      }, showManual);
+    } else {
+      legacyCopy();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
