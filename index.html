@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060c0a">
+<title>上海一日 · 文件入口</title>
+<style>
+  :root{--bg:#060c0a;--panel:#0b1512;--line:#1d3a2f;--line2:#2a5344;
+        --grn:#4dff9e;--grn-d:#26c47b;--sil:#cdd9d5;--sil-d:#7d948c}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);color:var(--sil);min-height:100vh;
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    padding:22px 16px 40px;
+  }
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.20) 0 1px,rgba(0,0,0,0) 1px 3px)}
+  .wrap{max-width:520px;margin:0 auto}
+  .hud{display:flex;justify-content:space-between;font-family:Consolas,monospace;
+       font-size:12px;color:var(--grn-d);letter-spacing:2px;margin-bottom:14px}
+  .hud .p2{border:2px solid var(--grn-d);padding:1px 8px;color:var(--grn)}
+  h1{font-size:21px;margin:0 0 6px;color:#e9fff6;letter-spacing:2px;
+     text-shadow:0 0 16px rgba(77,255,158,.4)}
+  p.sub{font-size:12.5px;color:var(--grn-d);margin:0 0 20px}
+  a.tile{
+    display:block;text-decoration:none;color:inherit;
+    background:var(--panel);border:2px solid var(--line2);
+    padding:16px;margin-bottom:11px;
+  }
+  a.tile:active{border-color:var(--grn);background:#0a2419}
+  a.tile .n{display:block;font-weight:700;font-size:16px;color:#e9fff6}
+  a.tile .d{display:block;font-size:12.5px;color:var(--sil-d);margin-top:5px}
+  a.tile.primary{border-color:var(--grn-d);background:#0a2419}
+  .note{font-size:12px;color:var(--sil-d);margin-top:18px;line-height:1.7;
+        border-top:1px dashed var(--line2);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hud"><span>2026.11.15　SUN</span><span class="p2">OPS</span></div>
+  <h1>上海一日 · 文件入口</h1>
+  <p class="sub">点下面任一文件即可打开</p>
+
+  <a class="tile primary" href="行程-2026-11-15.html">
+    <span class="n">行程-2026-11-15.html</span>
+    <span class="d">主用页 · 可点导航、二选一、搜索按钮</span>
+  </a>
+
+  <a class="tile" href="行程-2026-11-15.pdf">
+    <span class="n">行程-2026-11-15.pdf</span>
+    <span class="d">PDF 版 · 微信里直接能看，不用选浏览器</span>
+  </a>
+
+  <a class="tile" href="分享图-2026-11-15.png">
+    <span class="n">分享图-2026-11-15.png</span>
+    <span class="d">一张长图 · 发给朋友看</span>
+  </a>
+
+  <a class="tile" href="微信版-2026-11-15.txt">
+    <span class="n">微信版-2026-11-15.txt</span>
+    <span class="d">纯文字 · 粘到微信</span>
+  </a>
+
+  <div class="note">
+    这个页面挂在 GitHub Pages 上，只要联网就能打开。<br>
+    打开后可以「添加到主屏幕」，下次点图标直接进。
+  </div>
+</div>
+</body>
+</html>
